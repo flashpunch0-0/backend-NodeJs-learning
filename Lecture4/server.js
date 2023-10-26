@@ -2,27 +2,10 @@ const http = require("http");
 const fs = require("fs");
 
 const server = http.createServer((req, res) => {
-  // console.log(req);
-  console.log(req.url);
-
-  // set header content type
+  // Set header content type
   res.setHeader("Content-Type", "text/html");
 
-  // res.write('<p>hello, ninjas</p>');
-  // res.write('<p>hello again, ninjas</p>');
-  // res.end();
-
-  // send html file
-  // fs.readFile('./views/index.html', (err, data) => {
-  //   if (err) {
-  //     console.log(err);
-  //     res.end();
-  //   }
-  //   //res.write(data);
-  //   res.end(data);
-  // });
-
-  // routing
+  // Routing
   let path = "./views/";
   switch (req.url) {
     case "/":
@@ -39,11 +22,11 @@ const server = http.createServer((req, res) => {
       res.end();
       break;
     default:
-      path += `404.html`;
+      path += "404.html";
       res.statusCode = 404;
   }
 
-  // send html
+  // Send HTML
   fs.readFile(path, (err, data) => {
     if (err) {
       console.error(`Error reading file ${path}: ${err.message}`);
@@ -55,7 +38,9 @@ const server = http.createServer((req, res) => {
     }
   });
 });
-// localhost is the default value for 2nd argument
-server.listen(3000, "localhost", () => {
-  console.log("listening for requests on port 3000");
+
+// Start the server
+const port = 3000;
+server.listen(port, "localhost", () => {
+  console.log("Server is listening for requests on port " + port);
 });

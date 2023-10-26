@@ -6,3 +6,5 @@ const server = http.createServer((req, res) => {
 server.listen(3000, "localhost", () => {
   console.log("liostening to requests on posts 3000");
 });
+
+// learnt how to setup nodejs server
